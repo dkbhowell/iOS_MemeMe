@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DA004BDA1E4954E200EA1EA2 /* Impact.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DA004BD91E4954E200EA1EA2 /* Impact.ttf */; };
 		DADC8EEB1E43C60200D13E89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADC8EEA1E43C60200D13E89 /* AppDelegate.swift */; };
-		DADC8EED1E43C60200D13E89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADC8EEC1E43C60200D13E89 /* ViewController.swift */; };
+		DADC8EED1E43C60200D13E89 /* MemeEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DADC8EEC1E43C60200D13E89 /* MemeEditorViewController.swift */; };
 		DADC8EF01E43C60200D13E89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADC8EEE1E43C60200D13E89 /* Main.storyboard */; };
 		DADC8EF21E43C60200D13E89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DADC8EF11E43C60200D13E89 /* Assets.xcassets */; };
 		DADC8EF51E43C60200D13E89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DADC8EF31E43C60200D13E89 /* LaunchScreen.storyboard */; };
@@ -20,7 +20,7 @@
 		DA004BD91E4954E200EA1EA2 /* Impact.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Impact.ttf; sourceTree = "<group>"; };
 		DADC8EE71E43C60200D13E89 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DADC8EEA1E43C60200D13E89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DADC8EEC1E43C60200D13E89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DADC8EEC1E43C60200D13E89 /* MemeEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemeEditorViewController.swift; sourceTree = "<group>"; };
 		DADC8EEF1E43C60200D13E89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DADC8EF11E43C60200D13E89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DADC8EF41E43C60200D13E89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 				DA004BD71E4954B900EA1EA2 /* Resources */,
 				DADC8EFC1E48FBEE00D13E89 /* Model */,
 				DADC8EEA1E43C60200D13E89 /* AppDelegate.swift */,
-				DADC8EEC1E43C60200D13E89 /* ViewController.swift */,
+				DADC8EEC1E43C60200D13E89 /* MemeEditorViewController.swift */,
 				DADC8EEE1E43C60200D13E89 /* Main.storyboard */,
 				DADC8EF11E43C60200D13E89 /* Assets.xcassets */,
 				DADC8EF31E43C60200D13E89 /* LaunchScreen.storyboard */,
@@ -169,7 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DADC8EFE1E48FBFD00D13E89 /* Meme.swift in Sources */,
-				DADC8EED1E43C60200D13E89 /* ViewController.swift in Sources */,
+				DADC8EED1E43C60200D13E89 /* MemeEditorViewController.swift in Sources */,
 				DADC8EEB1E43C60200D13E89 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

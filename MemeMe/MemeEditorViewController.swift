@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  MemeMeSandBox
 //
 //  Created by Dustin Howell on 2/2/17.
@@ -8,14 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     // MARK: Outlets
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var topMemeText: UITextField!
     @IBOutlet weak var bottomMemeText: UITextField!
     @IBOutlet weak var bottomToolbar: UIToolbar!
-    
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var nightModeToggleButton: UIBarButtonItem!
@@ -37,27 +36,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSStrokeWidthAttributeName: -3.0
     ]
 
+    // MARK: VC lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Disable camera button if device does not have a camera
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
-        
-        // setup delegates
-        topMemeText.delegate = self
-        bottomMemeText.delegate = self
-        
         // setup font styles
-        topMemeText.defaultTextAttributes = memeTextAttributes
-        bottomMemeText.defaultTextAttributes = memeTextAttributes
-        topMemeText.textAlignment = .center
-        bottomMemeText.textAlignment = .center
+        configureTextFields(textField: topMemeText)
+        configureTextFields(textField: bottomMemeText)
         
         navigationController?.navigationBar.barTintColor = nightMode ? darkBarColor : darkIconColor
+        shareButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
     }
     
@@ -69,17 +62,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: Actions
     @IBAction func pickImage(_ sender: UIBarButtonItem) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
-        self.present(pickerController, animated: true, completion: nil)
+        pickImageFromSource(sourceType: .photoLibrary)
     }
     
     @IBAction func takePicture(_ sender: UIBarButtonItem) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .camera
-        self.present(pickerController, animated: true, completion: nil)
+        pickImageFromSource(sourceType: .camera)
     }
     
     @IBAction func shareMeme(_ sender: UIBarButtonItem) {
@@ -148,7 +135,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         return true
     }
     
-    // Notification methods
+    // MARK: Keyboard Notification methods
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
@@ -156,6 +143,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func unsubscribeToKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow , object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide , object: nil)
     }
     
     func keyboardWillShow(_ notification: Notification) {
@@ -179,7 +167,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // MARK: Utility Functions
     
-    func generateMemedImage() -> UIImage {
+    private func generateMemedImage() -> UIImage {
         // hide toolbar on bottom
         bottomToolbar.isHidden = true
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -194,6 +182,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         bottomToolbar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: false)
         return memedImage
+    }
+    
+    private func pickImageFromSource(sourceType: UIImagePickerControllerSourceType) {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.sourceType = sourceType
+        self.present(pickerController, animated: true, completion: { self.shareButton.isEnabled = true })
+    }
+    
+    private func configureTextFields(textField: UITextField) {
+        switch textField {
+        case topMemeText, bottomMemeText:
+            textField.delegate = self
+            textField.defaultTextAttributes = memeTextAttributes
+            textField.textAlignment = .center
+        default:
+            print("Do Nothing")
+        }
     }
 }
 
