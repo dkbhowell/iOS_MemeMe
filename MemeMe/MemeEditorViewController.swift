@@ -147,10 +147,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     func keyboardWillShow(_ notification: Notification) {
+        bottomMemeText.frame.origin.y += 20
         view.frame.origin.y = 0 - getKeyboardHeight(notification)
     }
     
     func keyboardWillHide(_ notification: Notification) {
+        bottomMemeText.frame.origin.y -= 20
         view.frame.origin.y = 0
     }
     
